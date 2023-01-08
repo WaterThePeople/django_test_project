@@ -4,8 +4,8 @@ from django.contrib.auth.models import User
 from django.urls import reverse
 
 class Post(models.Model):
-    title = models.CharField(max_length=100)
-    content = models.TextField()
+    title = models.CharField(max_length=100,verbose_name=u"Tytuł")
+    content = models.TextField(verbose_name=u"Opis postu")
     date_posted = models.DateTimeField(default=timezone.now)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
 
@@ -19,7 +19,7 @@ class Comment(models.Model):
     post = models.ForeignKey(Post, related_name = "comments", on_delete=models.CASCADE)
     name = models.CharField(max_length=255)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
-    body = models.TextField()
+    body = models.TextField(verbose_name=u"")
     date_added = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):

@@ -2,12 +2,13 @@ from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.forms import AuthenticationForm
+from django.core.exceptions import ValidationError
+from django.utils.translation import ngettext
 
 class UserRegisterForm(UserCreationForm):
 
     error_messages = {
-        'password_mismatch': ("Hasła nie są jednakowe!"),
-        'min_length': ("Hasło jest za krótkie, musi mieć minimum 8 znaków!"),
+       'password_mismatch': ("Hasła nie są jednakowe!"),
     }
 
     email = forms.EmailField()
@@ -39,3 +40,22 @@ class LoginForm(AuthenticationForm):
         label='Hasło', 
         widget=forms.PasswordInput(),
     )
+
+
+class CustomPasswordValidator():
+
+    def __init__(self, min_length=5):
+        self.min_length = min_length
+
+    def validate(self, password, user=None):
+        if len(password) < self.min_length:
+            raise ValidationError(
+                ngettext(
+                    "To hasło jest za krótkie, musi posiadać przynajmniej "
+                    +str(self.min_length)+" znaków.",
+                    "To hasło jest za krótkie, musi posiadać przynajmniej "
+                    +str(self.min_length)+" znaków.",
+                    self.min_length,
+                ),
+            )
+
