@@ -5,6 +5,20 @@ from django.views.generic import DetailView,CreateView,UpdateView,DeleteView
 from .models import Post,Comment
 from .forms import CommentForm
 
+
+
+
+from django.template import RequestContext
+from django.shortcuts import render
+
+def handler404(request):
+    response = render('404.html', {},
+                              context_instance=RequestContext(request))
+    response.status_code = 404
+    return response
+
+
+
 def home(request):
     context = {
         'posts': Post.objects.all()

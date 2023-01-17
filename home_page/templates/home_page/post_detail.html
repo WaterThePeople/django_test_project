@@ -40,13 +40,15 @@
 
 <div >
     {% for comment in post.comments.all %}
-    <div style="border-style: groove;border-bottom: 0px;padding-left: 5px;font-size: large;font-weight: 500;">
-        {{comment.author}} -
-        {{comment.date_added|date:"d.m.Y"}}
+    <div style="border-style:solid;margin-bottom:15px;padding-left:15px;padding-bottom:5px;border-width: 1px;border-color: rgb(175, 175, 175);">
+        <div style="font-size:20px;;font-weight: 500">
+            {{comment.author}} -
+            {{comment.date_added|date:"d.m.Y"}}
+        </div>
+        <div>
+            {{comment.body}}
+        </div> 
     </div>
-    <div style="border-style: groove; margin-bottom: 15px;border-top: 0px;padding-left: 5px;">
-        {{comment.body}}
-    </div>  
     {% endfor %}
 {% endif %}
 </div>
