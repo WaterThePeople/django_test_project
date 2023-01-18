@@ -30,4 +30,4 @@ starszych wersji trzeba zainstalować ręcznie):
 	6.1.Poprzez terminal wejdź to folderu gdzie znajduje się plik 'manage.py'.
 	6.2.Użyj komendy 'folder_name_of_env\Scripts\activate.bat', aby uruchomić wirtualne środowisko.
 	6.3.Użyj komendy 'py manage.py runserver', aby uruchomić serwer.
-	6.4.Teraz możesz już wejść na serwer, za pomocą localhost (127.0.0.1).
+	6.4.Teraz możesz już wejść na serwer, za pomocą localhost (http://127.0.0.1:8000/)
